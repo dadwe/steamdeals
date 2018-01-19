@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Current Humble Store Sales</title>
+</head>
+
+<body>
+{% extends "listapp/header.html" %}
+{% block content %}
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Name of Game</th>
+                <th scope="col">Discount Percentage</th>
+                <th scope="col">Current Price</th>
+                <th scope="col">G2A Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for sale in g2a_humble %}
+            <tr>
+                <td>
+                    <a href="{{sale.name.humble_link}}" target="_blank">
+                        {{sale.name.name}}
+                    </a>
+                </td>
+                <td>{{sale.name.discount}}</td>
+                <td>{{sale.name.price}}</td>
+                <td>
+                    <a href="{{sale.g2a_link}}">
+                        {{sale.price}}
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+<button onclick="goTop()">Go to Top</button>
+
+<script>
+    function goTop() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+</script>
+{% endblock %}
+</body>
+</html>
