@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Current Steam Sales</title>
+    <title>Current Humble Store Sales</title>
 </head>
 
-<body onload="markCurrentPage()">
+<body onload="addPrct(); markCurrentPage()">
 {% extends "listapp/header.html" %}
 {% block content %}
     <table class="table table-bordered" id="main-table">
@@ -18,7 +18,7 @@
                     </a>
                     <div align="right">
                         <a onclick="numSortUp(0)">
-                                <span class="glyphicon glyphicon-chevron-down" role="button"></span>
+                            <span class="glyphicon glyphicon-chevron-down" role="button"></span>
                         </a>
                     </div>
                 </th>
@@ -28,7 +28,7 @@
                     </a>
                     <div align="right">
                         <a onclick="numSortDown(1)">
-                                <span class="glyphicon glyphicon-chevron-down" role="button"></span>
+                            <span class="glyphicon glyphicon-chevron-down" role="button"></span>
                         </a>
                     </div>
                 </th>
@@ -38,43 +38,52 @@
                     </a>
                     <div align="right">
                         <a onclick="priceSortDown(2)">
-                                <span class="glyphicon glyphicon-chevron-down" role="button"></span>
-                        </a>
-                    </div>
-                </th>
-                <th scope="col">Game Rating
-                    <a onclick="numSortUp(3)">
-                        <span class="glyphicon glyphicon-chevron-up" role="button" style="float:right"></span>
-                    </a>
-                    <div align="right">
-                        <a onclick="numSortDown(3)">
-                                <span class="glyphicon glyphicon-chevron-down" role="button"></span>
+                            <span class="glyphicon glyphicon-chevron-down" role="button"></span>
                         </a>
                     </div>
                 </th>
                 <th scope="col">G2A Price
-                    <a onclick="priceSortUp(4)">
+                    <a onclick="priceSortUp(3)">
                         <span class="glyphicon glyphicon-chevron-up" role="button" style="float:right"></span>
                     </a>
                     <div align="right">
-                        <a onclick="priceSortDown(4)">
-                                <span class="glyphicon glyphicon-chevron-down" role="button"></span>
+                        <a onclick="priceSortDown(3)">
+                            <span class="glyphicon glyphicon-chevron-down" role="button"></span>
+                        </a>
+                    </div>
+                </th>
+                <th scope="col">Margin
+                    <a>
+                        <span class="glyphicon glyphicon-chevron-up" role="button" style="float:right"></span>
+                    </a>
+                    <div align="right">
+                        <a>
+                            <span class="glyphicon glyphicon-chevron-down" role="button"></span>
+                        </a>
+                    </div>
+                </th>
+                <th scope="col">Margin Percentage
+                    <a>
+                        <span class="glyphicon glyphicon-chevron-up" role="button" style="float:right"></span>
+                    </a>
+                    <div align="right">
+                        <a>
+                            <span class="glyphicon glyphicon-chevron-down" role="button"></span>
                         </a>
                     </div>
                 </th>
             </tr>
         </thead>
         <tbody>
-            {% for sale in g2a_steam %}
+            {% for sale in g2a_humble %}
             <tr>
                 <td>
-                    <a href="{{sale.name.steam_link}}" target="_blank">
+                    <a href="{{sale.name.humble_link}}" target="_blank">
                         {{sale.name.name}}
                     </a>
                 </td>
                 <td>{{sale.name.discount}}</td>
                 <td>{{sale.name.price}}</td>
-                <td>{{sale.name.rating}}</td>
                 {% if sale.g2a_link != "N/A" %}
                     <td>
                         <a href="{{sale.g2a_link}}" target="_blank">
@@ -84,25 +93,26 @@
                 {% else %}
                 <td>{{sale.price}}</td>
                 {% endif %}
+                <td>{{sale.margin_num}}</td>
+                <td class="percentage">{{sale.margin_percent}}</td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
-
 <div align="center">
     <ul class="pagination">
-        {% if g2a_steam.has_previous %}
-            <li><a href="?page={{ g2a_steam.previous_page_number }}">Previous</a></li>
+        {% if g2a_humble.has_previous %}
+            <li><a href="?page={{ g2a_humble.previous_page_number }}">Previous</a></li>
         {% else %}
             <li class="disabled"><a>Previous</a></li>
         {% endif %}
 
-        {% for page in g2a_steam.paginator.page_range %}
+        {% for page in g2a_humble.paginator.page_range %}
             <li class="pages"><a href="?page={{ page }}">{{ page }}</a></li>
         {% endfor %}
 
-        {% if g2a_steam.has_next %}
-            <li><a href="?page={{ g2a_steam.next_page_number }}">Next</a></li>
+        {% if g2a_humble.has_next %}
+            <li><a href="?page={{ g2a_humble.next_page_number }}">Next</a></li>
         {% else %}
             <li class="disabled"><a>Next</a></li>
         {% endif %}
