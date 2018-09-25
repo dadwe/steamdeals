@@ -1,0 +1,1 @@
+Scripts need to be rewritten every time HTML format changes on a site.
