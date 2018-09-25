@@ -1,0 +1,49 @@
+{% extends "listapp/header.html" %}
+
+{% block content %}
+<div align="center">
+    <h3>Announcements</h3>
+</div>
+<br><br>
+<div>
+    <h4>April 25th 2018</h4>
+    <p>
+        The steam sales page now updates daily at 22:00 GMT. Margin column sorts on the humble bundle page
+        have been disabled.
+    </p>
+    <br><br>
+    <h4>April 23rd 2018</h4>
+    <p>
+    The steam sales page is not working currently and is being looked into.
+    </p>
+    <br><br>
+    <h4>March 9th 2018</h4>
+    <p>
+        Added profit margin calculations to the humble bundle store section. It assumes you are selling to dedicated
+        buyers and DOES NOT include listing, payout and currency conversion fees since those are not on a per item
+        basis. As always, please double check the g2a link and humble bundle link to make sure they are for the same
+        game. The initial sort of the humble bundle sales are now based on the profit margin percentages, though you
+        can still use the sorting features from before. Site is updated at 22:00 GMT daily, so data may not be accurate
+        during this time. Something similar is coming for the steam sales.
+    </p>
+    <p>Margin = (G2A_Price * 0.892 - 0.43) - Humble_Store_Price</p>
+    <p>Margin_Percent = G2A_Price / Humble_Store_Price * 100</p>
+    <br>
+    <strong>Note: 0.35 EUR = 0.43 USD at the moment. Calculations are done with static conversion rates, but
+    can be made to use dynamic rates if requested.</strong>
+    <br>
+    <p>Full list of fees can be found <a href="https://www.g2a.com/payments.pdf" target="_blank">here</a></p>
+    <br><br>
+    <h4>March 6th 2018</h4>
+    <p>
+        This site is far from finished, but it's better than nothing. The login system currently does nothing, but I
+        have plans to implement custom tracking features for it in the near future. Not all games are tracked, only the
+        bestsellers/popular ones. If you have any concerns or feature requests, please leave feedback. Include your
+        email if you want a reply.
+        <br>
+        <strong>Note: Makes sure to report any mismatches between the g2a link and steam/humble bundle link. </strong>
+    </p>
+</div>
+
+{% endblock %}
+
